@@ -11,6 +11,8 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
+
+
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -69,8 +71,8 @@ def user_input(user_question):
     st.write("Reply: ", response["output_text"])
 
 def main():
-    st.set_page_config("Chat PDF")
-    st.header("Chat with PDF using Gemini💁")
+    st.set_page_config("PDF Quering")
+    st.header("Chat with Multiple PDFs!")
 
     user_question = st.text_input("Ask a Question from the PDF Files")
 
@@ -86,7 +88,8 @@ def main():
                 text_chunks = get_text_chunks(raw_text)
                 get_vector_store(text_chunks)
                 st.success("Done")
-
+        icon_size=20
+        st.button('linkedin', 'https://www.linkedin.com/in/yash-bhatnagar-203aa622a/', 'Follow me on LinkedIn', icon_size)
 
 
 if __name__ == "__main__":
