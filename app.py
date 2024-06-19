@@ -97,7 +97,7 @@ def main():
                 st.success("Done")
         icon_size=20
         #st.button('linkedin', 'https://www.linkedin.com/in/yash-bhatnagar-203aa622a/', 'Follow me on LinkedIn', icon_size)
-        st.write('Made with <3 by *[Yash Bhatnagar](https://github.com/Yash-Bhatnagar-02/Chat-with-multiple-PDFs)*')
+        st.write('Made with <3 by *[Yash Bhatnagar](https://www.linkedin.com/in/yash-bhatnagar-203aa622a/)*')
 
 
 if __name__ == "__main__":
