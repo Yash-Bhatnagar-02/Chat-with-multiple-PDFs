@@ -77,18 +77,29 @@ def main():
     st.header("Chat with Multiple PDFs!")
     #user_question = st.text_area("Ask a Question from the PDF Files")
 
+    page_bg_img = '''
+    <style>
+    body {
+    background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
+    background-size: cover;
+    }
+    </style>
+    '''
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
     with st.form(key="my_form"):
         
-        user_question=st.text_area(label="Ask me about the PDF!", max_chars=40, key="query")
+        user_question=st.text_area(label="AMA! 😎", max_chars=40, key="query")
         
         submit_button=st.form_submit_button(label="Submit")
 
     if user_question:
         user_input(user_question)
 
+
     with st.sidebar:
         st.title("Menu:")
-        pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
+        pdf_docs = st.file_uploader("Upload your PDF Files 📚 ", accept_multiple_files=True)
         if st.button("Submit & Process"):
             with st.spinner("Processing..."):
                 raw_text = get_pdf_text(pdf_docs)
