@@ -1,4 +1,5 @@
 import streamlit as st
+import textwrap
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
@@ -55,6 +56,7 @@ def get_conversational_chain():
     return chain
 
 def user_input(user_question):
+    wait=st.text("Please Wait...")
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
@@ -66,15 +68,20 @@ def user_input(user_question):
     response = chain(
         {"input_documents":docs, "question": user_question}
         , return_only_outputs=True)
-
+    wait.empty()
     print(response)
     st.write("Reply: ", response["output_text"])
 
 def main():
     st.set_page_config("PDF Quering")
     st.header("Chat with Multiple PDFs!")
+    #user_question = st.text_area("Ask a Question from the PDF Files")
 
-    user_question = st.text_input("Ask a Question from the PDF Files")
+    with st.form(key="my_form"):
+        
+        user_question=st.text_area(label="Ask me about the PDF!", max_chars=40, key="query")
+        
+        submit_button=st.form_submit_button(label="Submit")
 
     if user_question:
         user_input(user_question)
@@ -89,7 +96,8 @@ def main():
                 get_vector_store(text_chunks)
                 st.success("Done")
         icon_size=20
-        st.button('linkedin', 'https://www.linkedin.com/in/yash-bhatnagar-203aa622a/', 'Follow me on LinkedIn', icon_size)
+        #st.button('linkedin', 'https://www.linkedin.com/in/yash-bhatnagar-203aa622a/', 'Follow me on LinkedIn', icon_size)
+        st.write('Made with <3 by *[Yash Bhatnagar](https://github.com/Yash-Bhatnagar-02/Chat-with-multiple-PDFs)*')
 
 
 if __name__ == "__main__":
