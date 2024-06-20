@@ -15,18 +15,13 @@
   pip install -r requirements
 ```
 
-3. Install the Langchain-community:
-```bash
-  pip install -U langchain-community
-```
-
-4. Create an environment variable (.env) in the root directory of
+3. Create an environment variable (.env) in the root directory of
 your project folder and add your Google API key:
 ```bash
   GOOGLE_API_KEY=""
 ```
 
-5. Run the application with the following command:
+4. Run the application with the following command:
 ```bash
   streamlit run app.py
 ```
